@@ -25,21 +25,29 @@ function saveQuotes() {
 
 // Populate category dropdown dynamically
 function populateCategories() {
-  let categories = [...new Set(quotes.map(q => q.category))];
-  categorySelect.innerHTML = "";
+  const categories = [...new Set(quotes.map(q => q.category))];
 
+  // Reset filter dropdown
+  categoryFilter.innerHTML = "";
   let allOption = document.createElement("option");
   allOption.value = "all";
   allOption.textContent = "All Categories";
-  categorySelect.appendChild(allOption);
+  categoryFilter.appendChild(allOption);
 
   categories.forEach(cat => {
     let option = document.createElement("option");
     option.value = cat;
     option.textContent = cat;
-    categorySelect.appendChild(option);
+    categoryFilter.appendChild(option);
   });
+
+  // Restore last selected filter if available
+  const lastFilter = localStorage.getItem("lastCategoryFilter");
+  if (lastFilter) {
+    categoryFilter.value = lastFilter;
+  }
 }
+
 
 // Show a random quote
 function showRandomQuote() {
@@ -143,6 +151,7 @@ function importFromJsonFile(event) {
 
 // --- Setup ---
 
+const categoryFilter = document.getElementById("categoryFilter");
 const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 const categorySelect = document.getElementById("categorySelect");
