@@ -50,13 +50,13 @@ function populateCategories() {
 
 
 // Show a random quote
-function showRandomQuote() {
+function filterQuote() {
   let selectedCategory = categorySelect.value;
-  let filteredQuotes = selectedCategory === "all"
+  let filteredQuote = selectedCategory === "all"
     ? quotes
     : quotes.filter(q => q.category === selectedCategory);
 
-  if (filteredQuotes.length === 0) {
+  if (filteredQuote.length === 0) {
     quoteDisplay.textContent = "No quotes available in this category.";
     return;
   }
