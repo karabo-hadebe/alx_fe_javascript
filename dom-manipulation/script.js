@@ -198,6 +198,14 @@ quotes.push({ text, category });
 saveQuotes();
 fetchQuotesFromServer({ text, category }); // send to server
 
+const notification = document.createElement("div");
+notification.textContent = "Quotes synced with server!";
+notification.style.backgroundColor = "#ccffcc";
+notification.style.padding = "5px";
+notification.style.marginTop = "10px";
+document.body.insertBefore(notification, quoteDisplay);
+
+setTimeout(() => notification.remove(), 5000);
 
 // Sync every 30 seconds
 setInterval(syncQuotes, 30000);
