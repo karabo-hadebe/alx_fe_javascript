@@ -196,12 +196,12 @@ async function fetchQuotesFromServer(quote) {
 
 quotes.push({ text, category });
 saveQuotes();
-fetchQuoteFromServer({ text, category }); // send to server
+fetchQuotesFromServer({ text, category }); // send to server
 
 
 // Sync every 30 seconds
-setInterval(syncWithServer, 30000);
+setInterval(syncQuotes, 30000);
 
 // Optional: run immediately on page load
-syncWithServer();
+syncQuoutes();
 
