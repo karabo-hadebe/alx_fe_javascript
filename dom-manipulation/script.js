@@ -176,7 +176,7 @@ if (lastQuote) {
 }
 
 // Simulate fetching new quotes from a server
-async function syncWithServer() {
+async function fetchQuotesFromServer() {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
     const serverData = await response.json();
