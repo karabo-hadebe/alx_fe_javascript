@@ -175,3 +175,38 @@ if (lastQuote) {
   quoteDisplay.textContent = "Last session’s quote: " + lastQuote;
 }
 
+// Simulate fetching new quotes from a server
+async function syncWithServer() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const serverData = await response.json();
+
+    // Map server data to quote format (just as an example)
+    const newQuotes = serverData.slice(0, 5).map(item => ({
+      text: item.title,
+      category: "Server"
+    }));
+
+    // Merge with local quotes; server takes precedence
+    newQuotes.forEach(serverQuote => {
+      const exists = quotes.some(localQuote => localQuote.text === serverQuote.text);
+      if (!exists) {
+        quotes.push(serverQuote);
+      }
+    });
+
+    saveQuotes();      // update localStorage
+    populateCategories(); // update dropdown
+    console.log("Synced with server. New quotes added if any.");
+
+  } catch (err) {
+    console.error("Error syncing with server:", err);
+  }
+}
+
+// Sync every 30 seconds
+setInterval(syncWithServer, 30000);
+
+// Optional: run immediately on page load
+syncWithServer();
+
