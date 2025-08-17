@@ -1,4 +1,4 @@
-// Initial quotes (used only if localStorage is empty)
+// Initial quotes
 let defaultQuotes = [
   { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Motivation" },
   { text: "In the middle of every difficulty lies opportunity.", category: "Inspiration" },
@@ -82,7 +82,7 @@ function addQuote() {
   alert("New quote added!");
 }
 
-// ✅ Dynamically create the add-quote form
+// ✅ Dynamically create the add-quote form (from Task 1 requirement)
 function createAddQuoteForm() {
   let formDiv = document.createElement("div");
 
@@ -145,33 +145,24 @@ function importFromJsonFile(event) {
 
 const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
-const categorySelect = document.createElement("select");
-document.body.insertBefore(categorySelect, quoteDisplay);
+const categorySelect = document.getElementById("categorySelect");
+
+const exportBtn = document.getElementById("exportBtn");
+const importInput = document.getElementById("importFile");
 
 // Event listeners
 newQuoteBtn.addEventListener("click", showRandomQuote);
+exportBtn.addEventListener("click", exportToJsonFile);
+importInput.addEventListener("change", importFromJsonFile);
 
 // Initialize
 loadQuotes();
 populateCategories();
 createAddQuoteForm();
 
-// Restore last quote (if sessionStorage has it)
+// Restore last quote from sessionStorage
 const lastQuote = sessionStorage.getItem("lastQuote");
 if (lastQuote) {
   quoteDisplay.textContent = "Last session’s quote: " + lastQuote;
 }
-
-// Add Import/Export controls
-let exportBtn = document.createElement("button");
-exportBtn.textContent = "Export Quotes";
-exportBtn.onclick = exportToJsonFile;
-
-let importInput = document.createElement("input");
-importInput.type = "file";
-importInput.accept = ".json";
-importInput.onchange = importFromJsonFile;
-
-document.body.appendChild(exportBtn);
-document.body.appendChild(importInput);
 

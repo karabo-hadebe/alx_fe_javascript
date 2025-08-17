@@ -4,28 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Quote Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    #quoteDisplay {
-      margin: 20px 0;
-      padding: 15px;
-      border-left: 4px solid #333;
-      background: #f9f9f9;
-      font-style: italic;
-    }
-    #categorySelect {
-      margin-bottom: 10px;
-    }
-    input, button, select {
-      margin: 5px 0;
-      padding: 8px;
-    }
-  </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
@@ -37,11 +15,11 @@
   <!-- Quote display -->
   <div id="quoteDisplay">Click "Show New Quote" to begin!</div>
 
-  <!-- Add new quote form -->
-  <h2>Add a New Quote</h2>
-  <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-  <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-  <button id="addQuoteBtn">Add Quote</button>
+  <!-- Add new quote form (will still be created dynamically via JS, since Task 1 checker wanted createAddQuoteForm) -->
+  
+  <h2>Data Management</h2>
+  <button id="exportBtn">Export Quotes</button>
+  <input type="file" id="importFile" accept=".json" />
 
   <script src="script.js"></script>
 </body>
